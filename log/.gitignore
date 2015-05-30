@@ -1,0 +1,5 @@
+# This directory is essential for logging. lend.js will crash if an error occurs and this directory doesn't exist.
+# Ignore everything in this directory
+*
+# Except this file
+!.gitignore
