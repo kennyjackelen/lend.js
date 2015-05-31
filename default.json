@@ -1,0 +1,20 @@
+{
+  "PLACE_ORDERS": true,
+  "API_VERS": "v1",
+  "LOAN_AMOUNT": 25,
+  "THROTTLE_LENGTH": 1000,
+  "FILTERS" : {
+    "EXCLUDE_STATES": [ "CA", "FL", "NV" ],
+    "EXCLUDE_60_MO_LOANS": true,
+    "EXCLUDE_GRADES": [ "A", "B", "C" ],
+    "MIN_MONTHS_EMPLOYED": 24,
+    "MAX_INQUIRIES_LAST_6_MONTHS": 2,
+    "INCLUDE_LOAN_PURPOSES": [ "credit_card", "debt_consolidation" ],
+    "EXCLUDE_PUBLIC_RECORDS": true,
+    "MAX_DELINQUENCIES_LAST_2_YEARS": 0,
+    "MIN_OPEN_CREDIT_LINES": 2,
+    "MAX_OPEN_CREDIT_LINES": 19,
+    "REQUIRE_REVOLVING_BALANCE_LESS_THAN_LOAN_AMOUNT": true
+  },
+  "ERROR_LOG_FILE": "log/error.log"
+}
