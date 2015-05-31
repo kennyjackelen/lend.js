@@ -20,7 +20,9 @@ var PORTFOLIO_ID = process.env.LENDINGCLUB_PORTFOLIO_ID;
 var log = bunyan.createLogger({
             name: 'lend.js',
             streams: [{
-              path: config.ERROR_LOG_FILE
+              type: 'rotating-file',
+              path: config.ERROR_LOG_FILE,
+              period: '1d'   // daily rotation
             }]
           });
 
@@ -56,7 +58,7 @@ function getAvailableListings() {
       return;
     }
     if ( response.statusCode !== 200 ) {
-      deferred.reject( 'getAvailableListings: status code ' + response.statusCode );
+      deferred.reject( new Error( 'getAvailableListings: status code ' + response.statusCode ) );
       return;
     }
     lendingData.listings = JSON.parse( body ).loans;
@@ -86,7 +88,7 @@ function getMyAccountBalance( lendingData ) {
       return;
     }
     if ( response.statusCode !== 200 ) {
-      deferred.reject( 'getMyAccountBalance: status code ' + response.statusCode );
+      deferred.reject( new Error( 'getMyAccountBalance: status code ' + response.statusCode ) );
       return;
     }
     lendingData.balance = JSON.parse( body ).availableCash;
@@ -117,7 +119,7 @@ function getMyLoans( lendingData ) {
       return;
     }
     if ( response.statusCode !== 200 ) {
-      deferred.reject( 'gotLoans: status code ' + response.statusCode );
+      deferred.reject( new Error( 'gotLoans: status code ' + response.statusCode ) );
       return;
     }
     var loans = JSON.parse( body ).myNotes;
@@ -219,6 +221,7 @@ function placeOrder( lendingData ) {
     request(options, orderPlaced);
   }
   else {
+    log.info( 'Finished successfully: no loans ordered' );
     deferred.resolve();
   }
 
@@ -230,9 +233,10 @@ function placeOrder( lendingData ) {
       return;
     }
     if ( response.statusCode !== 200 ) {
-      deferred.reject( 'placeOrder: status code ' + response.statusCode );
+      deferred.reject( new Error( 'placeOrder: status code ' + response.statusCode ) );
       return;
     }
+    log.info( 'Finished successfully: ' + payload.orders.length + ' loans ordered' );
     deferred.resolve();
   }
 }
