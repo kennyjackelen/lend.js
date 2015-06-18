@@ -12,7 +12,8 @@ nconf.file('default', './default.json');
 var config = nconf.get();
 
 // Secret configuration
-var MY_KEY = process.env.LENDINGCLUB_API_KEY;
+var API_KEY = process.env.LENDINGCLUB_API_KEY;
+var THIRD_PARTY_KEY = process.env.LENDINGCLUB_THIRD_PARTY_KEY;
 var MY_ACCOUNT_ID = process.env.LENDINGCLUB_ACCOUNT_ID;
 var PORTFOLIO_ID = process.env.LENDINGCLUB_PORTFOLIO_ID;
 
@@ -43,7 +44,8 @@ function getAvailableListings() {
   var options = {
     url: 'https://api.lendingclub.com/api/investor/' + config.API_VERS + '/loans/listing?showAll=true',
     headers: {
-      Authorization: MY_KEY,
+      Authorization: API_KEY,
+      'X-LC-Application-Key': THIRD_PARTY_KEY,
       Accept: 'application/json'
     }
   };
@@ -73,7 +75,8 @@ function getMyAccountBalance( lendingData ) {
   var options = {
     url: 'https://api.lendingclub.com/api/investor/' + config.API_VERS + '/accounts/' + MY_ACCOUNT_ID + '/availablecash',
     headers: {
-      Authorization: MY_KEY,
+      Authorization: API_KEY,
+      'X-LC-Application-Key': THIRD_PARTY_KEY,
       Accept: 'application/json'
     }
   };
@@ -104,7 +107,8 @@ function getMyLoans( lendingData ) {
   var options = {
     url: 'https://api.lendingclub.com/api/investor/' + config.API_VERS + '/accounts/' + MY_ACCOUNT_ID + '/notes',
     headers: {
-      Authorization: MY_KEY,
+      Authorization: API_KEY,
+      'X-LC-Application-Key': THIRD_PARTY_KEY,
       Accept: 'application/json'
     }
   };
@@ -211,7 +215,8 @@ function placeOrder( lendingData ) {
     url: 'https://api.lendingclub.com/api/investor/' + config.API_VERS + '/accounts/' + MY_ACCOUNT_ID + '/orders',
     method: 'POST',
     headers: {
-      Authorization: MY_KEY,
+      Authorization: API_KEY,
+      'X-LC-Application-Key': THIRD_PARTY_KEY,
       'content-type': 'application/json',
     },
     body: JSON.stringify( payload )
