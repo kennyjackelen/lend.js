@@ -222,11 +222,12 @@ function placeOrder( lendingData ) {
     body: JSON.stringify( payload )
   };
 
-  if ( payload.orders.length > 0 ) {
+  lendingData.loansOrdered = payload.orders.length;
+  if ( lendingData.loansOrdered > 0 ) {
     request(options, orderPlaced);
   }
   else {
-    log.info( 'Finished successfully: no loans ordered' );
+    logSuccess( lendingData );
     deferred.resolve();
   }
 
@@ -241,7 +242,7 @@ function placeOrder( lendingData ) {
       deferred.reject( new Error( 'placeOrder: status code ' + response.statusCode ) );
       return;
     }
-    log.info( 'Finished successfully: ' + payload.orders.length + ' loans ordered' );
+    logSuccess( lendingData );
     deferred.resolve();
   }
 }
@@ -250,6 +251,17 @@ function placeOrder( lendingData ) {
 function errorHandler( error ) {
   console.log( error );
   log.error( error );
+}
+
+// Logs a success message and details to file.
+function logSuccess( lendingData ) {
+  var output = {
+    loansOrdered: lendingData.loansOrdered,
+    availableCash: lendingData.balance,
+    candidateCount: lendingData.filteredListings.length,
+    loanCandidates: lendingData.filteredListings
+  };
+  log.info( output, 'Finished successfully.' );
 }
 
 getAvailableListings()
