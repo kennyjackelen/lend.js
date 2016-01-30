@@ -7,6 +7,10 @@ var bunyan = require('bunyan');
 var nconf = require('nconf');
 
 // Load configuration from files
+var CONFIG_FILE = process.env.LENDJS_CONFIG_FILE;
+if ( CONFIG_FILE ) {
+  nconf.file('env', CONFIG_FILE );
+}
 nconf.file('custom', './config.json');
 nconf.file('default', './default.json');
 var config = nconf.get();
