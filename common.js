@@ -29,6 +29,7 @@ module.exports = function initCommon( config, MY_ACCOUNT_ID, API_KEY, THIRD_PART
     // Calls Lending Club's API to get your account balance
     getMyAccountBalance: function getMyAccountBalance( lendingData ) {
       var deferred = Q.defer();
+      lendingData = lendingData || {};
 
       var options = {
         url: 'https://api.lendingclub.com/api/investor/' + config.API_VERS + '/accounts/' + MY_ACCOUNT_ID + '/availablecash',
