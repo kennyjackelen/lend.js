@@ -3,6 +3,7 @@
 
 var request = require('request');
 var Q = require('q');
+var bunyan = require('bunyan');
 
 module.exports = function initCommon( config, MY_ACCOUNT_ID, API_KEY, THIRD_PARTY_KEY ) {
 
