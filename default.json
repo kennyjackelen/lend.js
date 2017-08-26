@@ -1,5 +1,7 @@
 {
   "PLACE_ORDERS": true,
+  "WITHDRAW_FUNDS": true,
+  "MIN_WITHDRAWAL": 25,
   "API_VERS": "v1",
   "LOAN_AMOUNT": 25,
   "THROTTLE_LENGTH": 1000,
