@@ -67,7 +67,6 @@ module.exports = function initMailer( config, MAILGUN_API_KEY, MAILGUN_DOMAIN_NA
         if ( body.items.length > 0 ) {
           var d = new Date(0);
           d.setUTCSeconds( body.items[0].timestamp );
-          console.log( d );
           if ( ( new Date() - d ) / ( 60 * 60 * 1000 ) < config.MIN_HOURS_BETWEEN_NOTIFICATIONS ) {
             deferred.reject();  // last message was sent too recently
             return;
