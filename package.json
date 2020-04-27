@@ -10,8 +10,8 @@
   "license": "MIT",
   "dependencies": {
     "bunyan": "^1.3.5",
-    "mailgun-js": "^0.13.1",
-    "nconf": "^0.7.1",
+    "mailgun-js": "^0.22.0",
+    "nconf": "^0.10.0",
     "q": "^1.3.0",
     "request": "^2.88.2"
   }
