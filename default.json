@@ -11,7 +11,7 @@
   "FILTERS" : {
     "EXCLUDE_STATES": [ "CA", "FL", "NV" ],
     "EXCLUDE_60_MO_LOANS": true,
-    "EXCLUDE_GRADES": [ "A", "B", "C" ],
+    "EXCLUDE_GRADES": [ "A", "B" ],
     "MIN_MONTHS_EMPLOYED": 24,
     "MAX_INQUIRIES_LAST_6_MONTHS": 2,
     "INCLUDE_LOAN_PURPOSES": [ "credit_card", "debt_consolidation" ],
